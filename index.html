@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Cat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .cat-container {
+            position: absolute;
+            animation: moveCat 8s ease-in-out infinite;
+        }
+
+        @keyframes moveCat {
+            0%, 100% {
+                left: 10%;
+                top: 50%;
+                transform: translateY(-50%) scaleX(1);
+            }
+            50% {
+                left: 80%;
+                top: 50%;
+                transform: translateY(-50%) scaleX(-1);
+            }
+        }
+
+        .cat {
+            width: 120px;
+            height: 100px;
+            position: relative;
+        }
+
+        .cat-body {
+            width: 100px;
+            height: 60px;
+            background: #ff9a3c;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+        }
+
+        .cat-head {
+            width: 70px;
+            height: 60px;
+            background: #ff9a3c;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            left: 0;
+        }
+
+        .cat-ear {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 25px solid #ff9a3c;
+            position: absolute;
+        }
+
+        .cat-ear.left {
+            top: 0;
+            left: 5px;
+            transform: rotate(-15deg);
+        }
+
+        .cat-ear.right {
+            top: 0;
+            right: 5px;
+            transform: rotate(15deg);
+        }
+
+        .cat-eye {
+            width: 12px;
+            height: 12px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 28px;
+            animation: blink 3s infinite;
+        }
+
+        .cat-eye.left {
+            left: 15px;
+        }
+
+        .cat-eye.right {
+            right: 15px;
+        }
+
+        @keyframes blink {
+            0%, 48%, 52%, 100% {
+                height: 12px;
+            }
+            50% {
+                height: 2px;
+            }
+        }
+
+        .cat-nose {
+            width: 8px;
+            height: 6px;
+            background: #ff6b9d;
+            border-radius: 0 0 50% 50%;
+            position: absolute;
+            top: 42px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cat-whisker {
+            width: 30px;
+            height: 1px;
+            background: #000;
+            position: absolute;
+            top: 40px;
+        }
+
+        .cat-whisker.left-top {
+            left: -25px;
+            transform: rotate(-10deg);
+        }
+
+        .cat-whisker.left-bottom {
+            left: -25px;
+            top: 45px;
+            transform: rotate(10deg);
+        }
+
+        .cat-whisker.right-top {
+            right: -25px;
+            transform: rotate(10deg);
+        }
+
+        .cat-whisker.right-bottom {
+            right: -25px;
+            top: 45px;
+            transform: rotate(-10deg);
+        }
+
+        .cat-tail {
+            width: 60px;
+            height: 15px;
+            background: #ff9a3c;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 20px;
+            right: -20px;
+            transform-origin: left center;
+            animation: wagTail 1s ease-in-out infinite;
+        }
+
+        @keyframes wagTail {
+            0%, 100% {
+                transform: rotate(-20deg);
+            }
+            50% {
+                transform: rotate(20deg);
+            }
+        }
+
+        .cat-leg {
+            width: 15px;
+            height: 30px;
+            background: #ff9a3c;
+            border-radius: 0 0 10px 10px;
+            position: absolute;
+            bottom: -30px;
+            animation: walkLeg 0.5s ease-in-out infinite;
+        }
+
+        .cat-leg.front-left {
+            left: 20px;
+        }
+
+        .cat-leg.front-right {
+            left: 45px;
+            animation-delay: 0.25s;
+        }
+
+        .cat-leg.back-left {
+            left: 70px;
+            animation-delay: 0.25s;
+        }
+
+        .cat-leg.back-right {
+            left: 90px;
+        }
+
+        @keyframes walkLeg {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .title {
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="title">🐱 Moving Cat 🐱</div>
+
+    <div class="cat-container">
+        <div class="cat">
+            <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                <div class="cat-eye left"></div>
+                <div class="cat-eye right"></div>
+                <div class="cat-nose"></div>
+                <div class="cat-whisker left-top"></div>
+                <div class="cat-whisker left-bottom"></div>
+                <div class="cat-whisker right-top"></div>
+                <div class="cat-whisker right-bottom"></div>
+            </div>
+            <div class="cat-body">
+                <div class="cat-leg front-left"></div>
+                <div class="cat-leg front-right"></div>
+                <div class="cat-leg back-left"></div>
+                <div class="cat-leg back-right"></div>
+                <div class="cat-tail"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ground"></div>
+</body>
+</html>
